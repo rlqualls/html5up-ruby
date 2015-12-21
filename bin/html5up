@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require 'html5up/cli'
+
+result = HTML5UP::CLI.start(ARGV)
+exit(1) unless result
