@@ -1,9 +1,9 @@
-[![Gem Version](https://badge.fury.io/rb/html5up-ruby.png)](http://badge.fury.io/rb/html5up-ruby)
+[![Gem Version](https://badge.fury.io/rb/html5up.svg)](https://badge.fury.io/rb/html5up)
 [![Build Status](https://travis-ci.org/rlqualls/html5up-ruby.png?branch=master)](https://travis-ci.org/rlqualls/html5up-ruby)
 
 # HTML5UP
 
-**HTML5UP** is a command-line downloader for [html5-up.net](https://html5up.net) templates.
+**HTML5UP** is a command-line downloader for [html5up.net](http://html5up.net) templates.
 
 ## Dependencies
 
