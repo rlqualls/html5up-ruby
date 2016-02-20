@@ -8,11 +8,9 @@ module HTML5UP
     option :save
     def new(project_name)
       template = options[:template]
-      puts "Downloading #{template}..."
       filename = "html5up-#{template}.zip"
-      url = "html5up.net/#{template}/download"
 
-      Helpers::download(url, filename)
+      Helpers::download(template, filename)
       Helpers::extract(filename, project_name, options)
     end
 

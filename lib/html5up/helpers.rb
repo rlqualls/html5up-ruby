@@ -1,39 +1,50 @@
 require "fileutils"
 require "curb"
 require "archive/zip"
+require "tty-spinner"
 
 module HTML5UP
   class Helpers
     def self.extract(src, dest, options = {})
-      Archive::Zip.extract(src, dest)
+      begin
+        Archive::Zip.extract(src, dest)
+      rescue Archive::Zip::UnzipError
+        puts "Error: Website down or invalid template name."
+        puts "Removing #{src}"
+        FileUtils.rm(src)
+        exit(false)
+      end
+
       if options[:save]
         FileUtils.mv(src, dest + "/" + src)
       else
         FileUtils.rm(src)
       end
+
+      puts "Extracted to #{dest}"
     end
 
-    def self.download(url, filename)
+    def self.download(template, filename)
       easy = Curl::Easy.new
       easy.follow_location = true
-      easy.url = url
-      print "'#{url}' :"
+      easy.url = "html5up.net/#{template}/download"
 
       File.open(filename, 'wb') do |f|
+        spinner = TTY::Spinner.new("Downloading #{template}... ")
         easy.on_progress do |dl_total, dl_now, ul_total, ul_now|
-          print "="
+          spinner.spin
           true
         end
         easy.on_body { |data| f << data; data.size }
         easy.perform
-        puts "=> '#{filename}'"
+        puts " => '#{filename}'"
       end
     end
 
     def self.templates
       %w(
-        hyperspace future-imperfect solid-state identity
-        lens fractal eventually spectral photon
+        multiverse hyperspace future-imperfect solid-state
+        identity lens fractal eventually spectral photon
         highlights landed strata read-only alpha
         directive aeriel twenty big-picture tessellate
         overflow prologue helios telephasic strongly-typed

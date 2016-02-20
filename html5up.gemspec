@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'html5up'
-  s.version       = '0.0.1'
+  s.version       = '0.0.2'
   s.summary       = "HTML5UP download tool"
   s.description   = "Create and manage HTML5UP projects"
   s.authors       = ["Robert Qualls"]
